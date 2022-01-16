@@ -1,0 +1,28 @@
+﻿@model Lab2.Models.FormModel
+@{
+    ViewData["Title"] = "Form1";
+
+    int day = (DateTime.Now - Model.BirthDate).Days;
+
+    string leapYear = DateTime.IsLeapYear(Model.BirthDate.Year) ? "Tak" : "Nie";
+    string Days;
+    if (day > 0)
+    {
+        Days = day.ToString();
+    }
+    else { Days = " Error"; }
+}
+
+<div style="text-align:center;">
+    <h3>Dane z formularza</h3>
+    <div style="text-align:left;">
+        @Html.DisplayNameFor(model => model.Name):          @Html.DisplayFor(model => model.Name)
+        <br />
+        <label>Liczba dni od urodzenia do teraz: </label> @(Days)
+        <br />
+        <label>Ten rok jest przestępny </label> @(leapYear)
+        <br />
+    </div>
+</div>
+<br />
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Wykonaj ponownie</a>
